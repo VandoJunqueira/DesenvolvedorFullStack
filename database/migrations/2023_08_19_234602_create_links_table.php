@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('links', function (Blueprint $table) {
             $table->id();
             $table->string('long_link');
-            $table->char('slug', 8)->unique();
+            $table->string('slug', 150)->unique();
             $table->bigInteger('user_id')->unsigned();
-            $table->integer('hit_counter');
+            $table->integer('hit_counter')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
