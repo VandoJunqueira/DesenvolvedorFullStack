@@ -54,9 +54,7 @@ class LinkServices
         $user = auth()->user();
 
         // Verifica se o link pertence ao usuário antes de atualizá-lo
-        $link = $this->repository->findLinkByIdAndUser($id, $user->id);
-
-        if (!$link) {
+        if (!$link = $this->repository->findLinkByIdAndUser($id, $user->id)) {
             throw new \Exception('Link não encontrado ou não pertence ao usuário.', 404);
         }
 
@@ -68,14 +66,28 @@ class LinkServices
 
         $user = auth()->user();
 
-        // Verifica se o link pertence ao usuário antes de atualizá-lo
-        $link = $this->repository->findLinkByIdAndUser($id, $user->id);
-
-        if (!$link) {
+        // Verifica se o link pertence ao usuário
+        if (!$link = $this->repository->findLinkByIdAndUser($id, $user->id)) {
             throw new \Exception('Link não encontrado ou não pertence ao usuário.', 404);
         }
 
-        return $this->repository->find($id);
+        return $link;
+    }
+
+    public function metric(string $slug)
+    {
+        if (!$link = $this->repository->findLinkBySlug($slug)) {
+            throw new \Exception('Link não encontrado.', 404);
+        }
+        $link->hit_counter++;
+        $link->save();
+
+        $link->metrics()->create([
+            'ip' => request()->ip(),
+            'user_agent' => request()->userAgent()
+        ]);
+
+        return $link;
     }
 
     // Função para verificar se um slug já existe
@@ -88,8 +100,9 @@ class LinkServices
     private function createSlug()
     {
         $slug = Str::random(random_int(6, 8));
+
+        // Caso o slug aleatório já exista, tenta criar novamente.
         if ($this->existSlug($slug)) {
-            // Caso o slug aleatório já exista, tenta criar novamente.
             $slug = $this->createSlug();
         }
         return $slug;
@@ -99,10 +112,8 @@ class LinkServices
     {
         $user = auth()->user();
 
-        // Verifica se o link pertence ao usuário antes de atualizá-lo
-        $link = $this->repository->findLinkByIdAndUser($id, $user->id);
-
-        if (!$link) {
+        // Verifica se o link pertence ao usuário antes de excluir.
+        if (!$this->repository->findLinkByIdAndUser($id, $user->id)) {
             throw new \Exception('Link não encontrado ou não pertence ao usuário.', 404);
         }
 

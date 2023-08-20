@@ -86,11 +86,25 @@ class LinkController extends Controller
         }
     }
 
+    public function redirect(string $slug)
+    {
+
+        $link = $this->services->metric($slug);
+
+        return response()->redirectTo($link->long_link);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $this->services->destroy($id);
+
+            return response()->json(['message' => 'Link excluido com sucesso!'], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], $th->getCode() ?: 505);
+        }
     }
 }

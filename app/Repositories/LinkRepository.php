@@ -20,4 +20,9 @@ class LinkRepository extends Repository
             ->where('user_id', $userId)
             ->first();
     }
+
+    public function findLinkBySlug(string $slug)
+    {
+        return Link::where('slug', $slug)->first();
+    }
 }

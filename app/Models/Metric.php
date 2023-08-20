@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Metric extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'ip',
+        'user_agent',
+    ];
 }

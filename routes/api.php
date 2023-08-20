@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->group(function () {
     // Links
     Route::resource('links', LinkController::class);
 });
+

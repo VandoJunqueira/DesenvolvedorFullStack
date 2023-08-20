@@ -15,4 +15,10 @@ class Link extends Model
         'title',
         'favicon',
     ];
+
+
+    public function metrics()
+    {
+        return $this->hasMany(Metric::class);
+    }
 }
