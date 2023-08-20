@@ -76,12 +76,16 @@ class LinkServices
 
     public function metric(string $slug)
     {
+        // Encontra o link correspondente ao slug fornecido
         if (!$link = $this->repository->findLinkBySlug($slug)) {
             throw new \Exception('Link não encontrado.', 404);
         }
+
+        // Incrementa o contador de acessos do link
         $link->hit_counter++;
         $link->save();
 
+        // Cria uma nova métrica para o link, registrando informações do acesso
         $link->metrics()->create([
             'ip' => request()->ip(),
             'user_agent' => request()->userAgent()
@@ -89,6 +93,7 @@ class LinkServices
 
         return $link;
     }
+
 
     // Função para verificar se um slug já existe
     private function existSlug(string $slug)
