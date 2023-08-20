@@ -35,12 +35,10 @@ class WebScrapingServices
             $favicon = $crawler->filter('link[rel="icon"]')->attr('href');
         } elseif ($crawler->filter('link[rel="shortcut icon"]')->count() > 0) {
             $favicon = $crawler->filter('link[rel="shortcut icon"]')->attr('href');
-        } elseif ($crawler->filter('meta[itemprop="image"]')->count() > 0) {
-            $favicon = 'favicon.ico';
-        }
+        } else {
+            $parsedUrl = parse_url(self::$url);
 
-        if (strpos($favicon, 'http') !== 0) {
-            $favicon = self::$url . '/' . ltrim($favicon, '/');
+            $favicon = $parsedUrl['scheme'] . "://" . $parsedUrl['host'] . '/favicon.ico';
         }
 
         return $favicon;
