@@ -16,13 +16,13 @@ class LinkRepository extends Repository
 
     public function findLinkByIdAndUser(string $linkId, int $userId)
     {
-        return Link::where('id', $linkId)
+        return $this->model->where('id', $linkId)
             ->where('user_id', $userId)
             ->first();
     }
 
     public function findLinkBySlug(string $slug)
     {
-        return Link::where('slug', $slug)->first();
+        return $this->model->where('slug', $slug)->first();
     }
 }

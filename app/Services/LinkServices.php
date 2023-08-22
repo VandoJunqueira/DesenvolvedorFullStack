@@ -54,7 +54,7 @@ class LinkServices
         $user = auth()->user();
 
         // Verifica se o link pertence ao usuário antes de atualizá-lo
-        if (!$link = $this->repository->findLinkByIdAndUser($id, $user->id)) {
+        if (!$this->repository->findLinkByIdAndUser($id, $user->id)) {
             throw new \Exception('Link não encontrado ou não pertence ao usuário.', 404);
         }
 
