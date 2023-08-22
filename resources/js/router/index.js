@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from '@/views/HomePage.vue'
+import NotFound from '../views/NotFound.vue'
 
 
 const routes = [
@@ -8,10 +8,29 @@ const routes = [
         name: 'home',
         component: () => import(/* webpackChunkName: "home" */ '../views/HomePage.vue'),
     },
+    {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: () => import(/* webpackChunkName: "dashboard" */ '../views/DashboardPage.vue'),
+    },
+    {
+        path: '/dashboard/deleted',
+        name: 'dashboard.deleted',
+        component: () => import(/* webpackChunkName: "dashboard" */ '../views/DashboardPage.vue'),
+    },
+    {
+        path: '/dashboard/stats',
+        name: 'dashboard.stats',
+        component: () => import(/* webpackChunkName: "dashboard.stats" */ '../views/StatsPage.vue'),
+    },
+    {
+        path: '/:pathMatch(.*)',
+        component: NotFound,
+    },
 ]
 
 const router = createRouter({
-    history: createWebHistory('http://localhost/'),
+    history: createWebHistory(),
     routes
 })
 
