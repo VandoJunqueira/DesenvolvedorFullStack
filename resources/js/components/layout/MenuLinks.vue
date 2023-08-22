@@ -1,12 +1,14 @@
 <template>
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button v-for="menu in menus" :key="menu.slug" type="button" class="btn btn-green">
+
+        <router-link v-for="menu in menus" :key="menu.slug" type="button" class="btn btn-green"
+            :to="{ name: menu.router }">
             <div class="d-flex align-items-center">
                 <vue-feather :type="menu.icon" size="20" class="me-2"></vue-feather> <span v-if="menu.slug == active">
                     {{ menu.title }}
                 </span>
             </div>
-        </button>
+        </router-link>
     </div>
 </template>
 
@@ -22,17 +24,20 @@ export default {
                 {
                     slug: 'home',
                     icon: 'home',
-                    title: 'Home'
+                    title: 'Home',
+                    router: 'dashboard'
                 },
                 {
                     slug: 'stats',
                     icon: 'bar-chart',
-                    title: 'Estatísticas'
+                    title: 'Estatísticas',
+                    router: 'dashboard.stats'
                 },
                 {
                     slug: 'excluded',
                     icon: 'trash-2',
-                    title: 'Excluídos'
+                    title: 'Excluídos',
+                    router: 'dashboard.deleted'
                 },
             ]
         };

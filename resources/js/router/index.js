@@ -1,27 +1,56 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import NotFound from '../views/NotFound.vue'
+import store from '../config/vuex/store';
 
 
 const routes = [
     {
+        path: '/login',
+        name: 'login',
+        component: () => import(/* webpackChunkName: "login" */ '../views/LoginPage.vue'),
+        meta: {
+            requeresAuth: false,
+        },
+    },
+    {
+        path: '/sing-up',
+        name: 'sing-up',
+        component: () => import(/* webpackChunkName: "login" */ '../views/SignUpPage.vue'),
+        meta: {
+            requeresAuth: false,
+        },
+    },
+    {
         path: '/',
         name: 'home',
         component: () => import(/* webpackChunkName: "home" */ '../views/HomePage.vue'),
+        meta: {
+            requeresAuth: false,
+        },
     },
     {
         path: '/dashboard',
         name: 'dashboard',
         component: () => import(/* webpackChunkName: "dashboard" */ '../views/DashboardPage.vue'),
+        meta: {
+            requeresAuth: true,
+        },
     },
     {
         path: '/dashboard/deleted',
         name: 'dashboard.deleted',
         component: () => import(/* webpackChunkName: "dashboard" */ '../views/DashboardPage.vue'),
+        meta: {
+            requeresAuth: true,
+        },
     },
     {
         path: '/dashboard/stats',
         name: 'dashboard.stats',
         component: () => import(/* webpackChunkName: "dashboard.stats" */ '../views/StatsPage.vue'),
+        meta: {
+            requeresAuth: true,
+        },
     },
     {
         path: '/:pathMatch(.*)',
@@ -34,27 +63,19 @@ const router = createRouter({
     routes
 })
 
-/* router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
 
-    const requiresAuth = to.meta.requeresAuth;
-    const nivel = to.meta.nivel ?? null;
-    const isAuthenticated = localStorage.user ?? false
+    console.log(to.meta.requeresAuth)
 
-    if (requiresAuth && !isAuthenticated) {
-        next('entrar');
+    if (to.meta.requeresAuth && store.state.auth.login == null) {
+        next({ name: 'login' });
+    } else if (!to.meta.requeresAuth && !store.state.auth.login) {
+        next();
     } else {
-        if (isAuthenticated) {
-            let user = JSON.parse(localStorage.user)
-            if (user.nivel > nivel && nivel != null) {
-                next('403');
-            } else {
-                next();
-            }
-        } else {
-            next();
-        }
-
+        next();
     }
-}); */
+
+    window.scrollTo(0, 0);
+});
 
 export default router

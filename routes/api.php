@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LinkController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// Autenticação
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/sign-up', [AuthController::class, 'signUp']);
+
 Route::middleware('auth:sanctum')->group(function () {
 
     // Links
     Route::resource('links', LinkController::class);
 });
-
