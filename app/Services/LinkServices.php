@@ -2,10 +2,9 @@
 
 namespace App\Services;
 
-use App\Models\Link;
 use App\Repositories\LinkRepository;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Jenssegers\Agent\Agent;
 
 class LinkServices
 {
@@ -97,10 +96,14 @@ class LinkServices
         $link->hit_counter++;
         $link->save();
 
+        $agent = new Agent(); //Usado para obter o navegador e o sistema do usuario
+
         // Cria uma nova métrica para o link, registrando informações do acesso
         $link->metrics()->create([
             'ip' => request()->ip(),
-            'user_agent' => request()->userAgent()
+            'user_agent' => request()->userAgent(),
+            'browsers' => $agent->browser(),
+            'system' => $agent->platform()
         ]);
 
         return $link;

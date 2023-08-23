@@ -13,5 +13,7 @@ class Metric extends Model
     protected $fillable = [
         'ip',
         'user_agent',
+        'browsers',
+        'system'
     ];
 }
