@@ -21,9 +21,6 @@ client.interceptors.request.use(config => {
 
 client.interceptors.response.use(
     response => {
-
-        console.log(response)
-
         return response;
     },
     error => {

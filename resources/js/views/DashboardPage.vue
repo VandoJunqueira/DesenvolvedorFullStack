@@ -7,8 +7,8 @@
         <CardStats class="col-2"></CardStats>
     </div>
     <hr>
-    <div class="d-flex justify-content-between">
-        <MenuLinks active="home" />
+    <div class="d-flex justify-content-between mt-5">
+        <MenuLinks :selected="selected" />
 
         <div>
             <button type="button" class="btn btn-green">
@@ -27,7 +27,27 @@
 
 
     <div class="mt-5">
-        <CardListLInks v-for="link in links" :key="link.id" :link="link" />
+        {{ filters }}
+        <div v-if="(typeof links.data == 'undefined') || page_loading" class="text-center">
+            <div class="spinner-border spinner-border text-info" style="width: 3rem; height: 3rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <div v-else>
+            <CardListLInks v-for="link in links.data" :key="link.id" :link="link" />
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li v-for="page in links.links" :key="page.label" class="page-item">
+                        <a v-if="!isNaN(page.label)" class="page-link rounded rounded-1 m-1" href="#"
+                            @click="push(page.label)">
+                            {{ page.label }}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </template>
 
@@ -36,43 +56,57 @@
 import CardStats from '@/components/cards/CardStats.vue'
 import MenuLinks from '@/components/layout/MenuLinks.vue'
 import CardListLInks from '@/components/cards/CardListLInks.vue'
+import DataProvider from '@/components/DataProvider.vue'
 
 export default {
     name: 'DashboardPage',
-    components: { CardStats, MenuLinks, CardListLInks },
+    components: { CardStats, MenuLinks, CardListLInks, DataProvider },
     data() {
         return {
-            active: this.selected || 'home',
-            links: [
-                {
-                    id: 1,
-                    lonk_link: 'https://www.esteticaexperts.com.br',
-                    title: 'Estética Experts - Cursos Online para Profissionais de Estética',
-                    favicon: 'https://www.esteticaexperts.com.br/favicon.ico',
-                    slug: 'teste-10000',
-                    user_id: 1,
-                    hit_counter: null,
-                },
-                {
-                    id: 2,
-                    lonk_link: 'https://www.esteticaexperts.com.br',
-                    title: 'Estética Experts - Cursos Online para Profissionais de Estética',
-                    favicon: 'https://www.esteticaexperts.com.br/favicon.ico',
-                    slug: 'rase45322',
-                    user_id: 1,
-                    hit_counter: 25,
-                },
-                {
-                    id: 3,
-                    lonk_link: 'https://www.esteticaexperts.com.br',
-                    title: 'Estética Experts - Cursos Online para Profissionais de Estética',
-                    favicon: 'https://www.esteticaexperts.com.br/favicon.ico',
-                    slug: 'hkcGV9s',
-                    user_id: 1,
-                    hit_counter: 36,
-                },
-            ]
+            links: {},
+            route_api: '/links',
+            page_loading: false
         };
+    },
+    methods: {
+        async getLinks() {
+            this.page_loading = true;
+            this.$http.get(this.route_api + this.filters).then((response) => {
+                this.links = response.data || {};
+                this.page_loading = false;
+            });
+        },
+        push(page) {
+            this.$router.push('/dashboard?page=' + page)
+        }
+    },
+    computed: {
+        filters() {
+            const params = new URLSearchParams(this.$route.query);
+            const currentPage = params.get('page') || 1;
+            params.set('page', currentPage);
+
+            const query_string = params.toString();
+            return '?' + query_string;
+        },
+        selected() {
+            if (typeof this.$route.query.deleted != 'undefined') {
+                return 'excluded';
+            }
+            return 'home';
+        }
+    },
+    watch: {
+        '$route.query'() {
+            this.getLinks()
+        },
+        '$store.state.actions.delete'(action) {
+            this.$utility.deleteById(this.links.data, action.id)
+        }
+    },
+    mounted() {
+        console.log(this.$store.state.actions)
+        this.getLinks();
     }
 }
 </script>

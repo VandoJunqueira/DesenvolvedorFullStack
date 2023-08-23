@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 // Autenticação
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/sign-up', [AuthController::class, 'signUp']);
+Route::post('/links/slug', [LinkController::class, 'checkSlug']);
 
 Route::middleware('auth:sanctum')->group(function () {
 

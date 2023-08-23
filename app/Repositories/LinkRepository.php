@@ -35,12 +35,21 @@ class LinkRepository extends Repository
 
     public function filter()
     {
-        return $this->model->where('user_id', auth()->user()->id)
-            ->where(function ($query) {
-                if (request('search')) {
-                    $query->where('title', 'LIKE', '%' . request('search') . '%');
-                }
-            })
-            ->orderBy('created_at', 'DESC');
+        $query = $this->model->where('user_id', auth()->user()->id);
+
+        if (request('search')) {
+            $query->where('title', 'LIKE', '%' . request('search') . '%');
+        }
+
+        if (request('deleted')) {
+            $query->onlyTrashed();
+        }
+
+        return $query->orderBy('created_at', 'DESC');
+    }
+
+    public function checkSlug($slug)
+    {
+        return $this->model->where('slug', $slug)->exists();
     }
 }

@@ -106,11 +106,10 @@ class LinkServices
         return $link;
     }
 
-
     // Função para verificar se um slug já existe
-    private function existSlug(string $slug)
+    public function checkSlug(string $slug)
     {
-        return Link::where('slug', $slug)->exists();
+        return $this->repository->checkSlug($slug);
     }
 
     // Função para criar um slug único
@@ -119,7 +118,7 @@ class LinkServices
         $slug = Str::random(random_int(6, 8));
 
         // Caso o slug aleatório já exista, tenta criar novamente.
-        if ($this->existSlug($slug)) {
+        if ($this->checkSlug($slug)) {
             $slug = $this->createSlug();
         }
         return $slug;

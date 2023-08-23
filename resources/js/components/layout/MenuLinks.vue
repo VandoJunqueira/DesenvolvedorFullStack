@@ -2,7 +2,7 @@
     <div class="btn-group" role="group" aria-label="Basic example">
 
         <router-link v-for="menu in menus" :key="menu.slug" type="button" class="btn btn-green"
-            :to="{ name: menu.router }">
+            :class="{ 'active-info text-info': menu.slug == active }" :to="menu.router">
             <div class="d-flex align-items-center">
                 <vue-feather :type="menu.icon" size="20" class="me-2"></vue-feather> <span v-if="menu.slug == active">
                     {{ menu.title }}
@@ -25,19 +25,19 @@ export default {
                     slug: 'home',
                     icon: 'home',
                     title: 'Home',
-                    router: 'dashboard'
+                    router: '/dashboard'
                 },
                 {
                     slug: 'stats',
                     icon: 'bar-chart',
                     title: 'Estatísticas',
-                    router: 'dashboard.stats'
+                    router: '/dashboard/stats'
                 },
                 {
                     slug: 'excluded',
                     icon: 'trash-2',
                     title: 'Excluídos',
-                    router: 'dashboard.deleted'
+                    router: '/dashboard?deleted=true'
                 },
             ]
         };
@@ -52,3 +52,10 @@ export default {
     },
 };
 </script>
+
+<style>
+.active-info {
+    border-radius: 10px !important;
+    background-color: #f1f1f1;
+}
+</style>

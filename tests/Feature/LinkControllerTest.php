@@ -78,4 +78,21 @@ class LinkControllerTest extends TestCase
 
         $response->assertStatus(302);
     }
+
+
+
+    # php artisan test --filter=LinkControllerTest::test_check_slug
+    public function test_check_slug(): void
+    {
+        $user = User::find(1);
+        $response = $this->actingAs($user);
+
+        $response = $this->post('/api/links/slug', [
+            'slug' => '27o3ux13',
+        ]);
+
+        $response->dump();
+
+        $response->assertStatus(200);
+    }
 }

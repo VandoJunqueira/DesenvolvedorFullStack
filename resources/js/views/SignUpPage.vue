@@ -4,7 +4,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <form action="#" id="form" v-on:submit.prevent="login" class="needs-validation" novalidate>
+                    <form action="#" id="form" class="needs-validation" novalidate>
 
                         <h4>Cadastrar</h4>
 
@@ -32,8 +32,8 @@
                         </Input>
 
 
-                        <button class="btn d-block w-100 btn-lg btn-info text-white"
-                            aria-label="Botão para entrar">Entrar</button>
+                        <LoadingButton class="d-block w-100" label="Cadastrar" @click.prevent="signUp"
+                            ref="loadingButton" />
 
                     </form>
                 </div>
@@ -45,6 +45,8 @@
 
 <script>
 import Input from '@/components/forms/Input.vue'
+import LoadingButton from '@/components/buttons/LoadingButton.vue'
+import { getItem, removeItem } from '@/utility/localStorageControl';
 
 export default {
     name: 'SignUpPage',
@@ -56,29 +58,47 @@ export default {
             apiErrors: {},
         }
     },
-    components: { Input },
+    components: { Input, LoadingButton },
     methods: {
-        async login() {
+        async signUp() {
             try {
 
                 if (this.$utility.validar('form')) {
-                    const response = await this.$http.post('/sign-up', {
+
+                    await this.$http.post('/sign-up', {
                         email: this.email,
                         name: this.name,
                         password: this.password
+                    }).then((response) => {
+
+                        this.$store.dispatch("login", {
+                            user: response.data.user,
+                            token: response.data.token,
+                            status: true,
+                        });
+
+
+                        if (getItem('temp_url') == null) {
+                            this.$refs.loadingButton.loading = false;
+                            this.$router.push("/dashboard");
+                        } else {
+                            this.$http.post('/links', getItem('temp_url')).then((response) => {
+                                this.$refs.loadingButton.loading = false;
+                                removeItem('url');
+                                removeItem('temp_url');
+
+                                this.$router.push({ name: 'dashboard.details', params: { slug: response.data.slug } });
+                            });
+                        }
+
                     });
 
-                    this.$store.dispatch("login", {
-                        user: response.data.user,
-                        token: response.data.token,
-                        status: true,
-                    });
-
-                    this.$router.push("/dashboard");
+                } else {
+                    this.$refs.loadingButton.loading = false;
                 }
 
-                // Redirecione ou faça outras ações após o login bem-sucedido
             } catch (error) {
+                this.$refs.loadingButton.loading = false;
                 if (error.response && error.response.data && error.response.data.errors) {
                     this.apiErrors = error.response.data.errors;
                 }

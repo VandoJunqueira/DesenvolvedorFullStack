@@ -22,8 +22,8 @@ class LinkController extends Controller
      */
     public function index()
     {
-       /*  try { */
-            return response()->json($this->services->filter()->paginate(10));
+        /*  try { */
+        return response()->json($this->services->filter()->paginate(10));
         /* } catch (\Throwable $th) {
             return response()->json(['message' => 'Ocorreu um erro.'], 505);
         } */
@@ -92,6 +92,17 @@ class LinkController extends Controller
         $link = $this->services->metric($slug);
 
         return response()->redirectTo($link->long_link);
+    }
+
+    public function checkSlug(Request $request)
+    {
+        if ($request->slug) {
+            if ($this->services->checkSlug($request->slug)) {
+                return response()->json(['error' => true], 200);
+            }
+        }
+
+        return response()->json(['success' => true], 200);
     }
 
     /**

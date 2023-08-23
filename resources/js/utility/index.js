@@ -59,6 +59,12 @@ function parser(value) {
     return value.replace(/\$\s?/g, '');
 }
 
+function isURL(str) {
+    // Expressão regular para verificar se a string é uma URL válida com http ou https
+    const urlPattern = /^(https?:\/\/)?[\w.-]+\.[a-z]{2,4}(\S*)?$/i;
+    return urlPattern.test(str);
+}
+
 export default {
     validar: validar,
     slug: slug,
@@ -67,5 +73,6 @@ export default {
     deleteByIndex: deleteByIndex,
     deleteById: deleteById,
     formatter: formatter,
-    parser: parser
+    parser: parser,
+    isURL: isURL
 }

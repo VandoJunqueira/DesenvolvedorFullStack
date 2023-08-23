@@ -7,7 +7,7 @@
         <CardStats class="col-2"></CardStats>
     </div>
     <hr>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between mt-5">
         <MenuLinks selected="stats" />
     </div>
 

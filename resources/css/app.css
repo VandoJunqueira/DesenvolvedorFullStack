@@ -298,6 +298,10 @@ p {
     margin-bottom: 1rem;
 }
 
+.cursor-not-allowed {
+    cursor: not-allowed !important;
+}
+
 abbr[title] {
     -webkit-text-decoration: underline dotted;
     text-decoration: underline dotted;
@@ -3897,7 +3901,7 @@ fieldset:disabled .btn {
 }
 
 .dropdown-menu {
-    --bs-dropdown-zindex: 1000;
+    --bs-dropdown-zindex: 10000;
     --bs-dropdown-min-width: 10rem;
     --bs-dropdown-padding-x: 0;
     --bs-dropdown-padding-y: 0.5rem;
@@ -9537,7 +9541,7 @@ fieldset:disabled .btn {
 
 .text-muted {
     --bs-text-opacity: 1;
-    color: var(--bs-secondary-color) !important;
+    color: #b9bbbb !important;
 }
 
 .text-black-50 {

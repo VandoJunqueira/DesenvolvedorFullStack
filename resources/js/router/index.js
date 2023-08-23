@@ -47,7 +47,39 @@ const routes = [
     {
         path: '/dashboard/stats',
         name: 'dashboard.stats',
-        component: () => import(/* webpackChunkName: "dashboard.stats" */ '../views/StatsPage.vue'),
+        component: () => import(/* webpackChunkName: "dashboard" */ '../views/StatsPage.vue'),
+        meta: {
+            requeresAuth: true,
+        },
+    },
+    {
+        path: '/dashboard/links/create',
+        name: 'dashboard.create',
+        component: () => import(/* webpackChunkName: "dashboard.links" */ '../views/CreateLinkPage.vue'),
+        meta: {
+            requeresAuth: true,
+        },
+    },
+    {
+        path: '/dashboard/links/:slug/edit',
+        name: 'dashboard.edit',
+        component: () => import(/* webpackChunkName: "dashboard.links" */ '../views/EditLinkPage.vue'),
+        meta: {
+            requeresAuth: true,
+        },
+    },
+    {
+        path: '/dashboard/links/:slug/copy',
+        name: 'dashboard.copy',
+        component: () => import(/* webpackChunkName: "dashboard.links" */ '../views/CopyLinkPage.vue'),
+        meta: {
+            requeresAuth: true,
+        },
+    },
+    {
+        path: '/dashboard/links/:slug/details',
+        name: 'dashboard.details',
+        component: () => import(/* webpackChunkName: "dashboard.links" */ '../views/DetailsLinkPage.vue'),
         meta: {
             requeresAuth: true,
         },
