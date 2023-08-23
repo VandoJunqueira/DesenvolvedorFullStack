@@ -19,7 +19,7 @@ class LinkControllerTest extends TestCase
         $response = $this->actingAs($user);
 
         $response = $this->post('/api/links', [
-            'url' => 'https://www.esteticaexperts.com.br',
+            'long_link' => 'https://www.esteticaexperts.com.br',
         ]);
 
         $response->dump();
@@ -47,7 +47,7 @@ class LinkControllerTest extends TestCase
         $response = $this->actingAs($user);
 
         $response = $this->put('/api/links/2', [
-            'url' => 'https://www.esteticaexperts.com.br',
+            'long_link' => 'https://www.esteticaexperts.com.br',
             'slug' => 'rase45322',
             'title' => 'TESTE EDITADO'
         ]);
@@ -76,8 +76,6 @@ class LinkControllerTest extends TestCase
     {
         $response = $this->get('/hkcGV9s');
 
-        $response->dump();
-
-        $response->assertStatus(200);
+        $response->assertStatus(302);
     }
 }
