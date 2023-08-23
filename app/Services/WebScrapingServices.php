@@ -17,7 +17,7 @@ class WebScrapingServices
         $browser = new HttpBrowser();
         $crawler = $browser->request('GET', self::$url);
 
-        $title = $crawler->filter('title')->text();
+        $title = $crawler->filter('title')->count() > 0 ? $crawler->filter('title')->text() : 'Sem título';
 
         $favicon = self::getFavicon($crawler);
 
@@ -30,15 +30,18 @@ class WebScrapingServices
     private static function getFavicon($crawler)
     {
         $favicon = null;
+        $parsedUrl = parse_url(self::$url);
 
         if ($crawler->filter('link[rel="icon"]')->count() > 0) {
             $favicon = $crawler->filter('link[rel="icon"]')->attr('href');
         } elseif ($crawler->filter('link[rel="shortcut icon"]')->count() > 0) {
             $favicon = $crawler->filter('link[rel="shortcut icon"]')->attr('href');
         } else {
-            $parsedUrl = parse_url(self::$url);
-
             $favicon = $parsedUrl['scheme'] . "://" . $parsedUrl['host'] . '/favicon.ico';
+        }
+
+        if (filter_var($favicon, FILTER_VALIDATE_URL) === false) {
+            $favicon = $parsedUrl['scheme'] . "://" . $parsedUrl['host'] . '/' . $favicon;
         }
 
         return $favicon;

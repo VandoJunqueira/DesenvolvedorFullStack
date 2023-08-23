@@ -24,7 +24,7 @@
                 </span>
             </template>
         </div>
-        <FormErrors :errors="inputErrors" v-if="showErrors" />
+        <FormErrors :errors="inputErrors" v-if="showErrors" class="mt-1"/>
     </div>
 </template>
 
@@ -65,6 +65,10 @@ export default {
             type: Boolean,
             default: false
         },
+        error: {
+            type: String,
+            default: null
+        },
         errors: {
             type: Array,
             default: () => []
@@ -84,6 +88,9 @@ export default {
     watch: {
         value(newVal) {
             this.inputValue = newVal;
+        },
+        inputValue(newVal) {
+            this.inputErrors = [];
         },
         errors(newErrors) {
             this.inputErrors = newErrors;

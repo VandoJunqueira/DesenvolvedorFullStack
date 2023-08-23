@@ -22,9 +22,9 @@ class LinkUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'url' => "required",
-            'slug' => "required|unique:links,slug,{$this->id},id|max:150",
-            'title' => "required"
+            'long_link' => 'required',
+            'slug' => "required|unique:links,slug,{$this->link},id|max:150",
+            'title' => 'required'
         ];
     }
 }

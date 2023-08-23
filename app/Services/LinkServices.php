@@ -16,16 +16,16 @@ class LinkServices
         $this->repository = $repository;
     }
 
-    // Função para paginar os links
-    public function paginate()
+    // Função para filtrar os links
+    public function filter()
     {
-        return $this->repository->paginate();
+        return $this->repository->filter();
     }
 
     // Função para armazenar um novo link
     public function store(array $data)
     {
-        $url = $data['url'];
+        $url = $data['long_link'];
         $slug = $data['slug'] ?? null;
 
         // Se não houver um slug definido, gera um slug aleatório
@@ -42,7 +42,7 @@ class LinkServices
         $link = $user->links()->create([
             'long_link' => $url,
             'slug' => $slug,
-            'title' => $web_site_info->title,
+            'title' => $data['title'] ?? $web_site_info->title,
             'favicon' => $web_site_info->favicon
         ]);
 
@@ -68,6 +68,18 @@ class LinkServices
 
         // Verifica se o link pertence ao usuário
         if (!$link = $this->repository->findLinkByIdAndUser($id, $user->id)) {
+            throw new \Exception('Link não encontrado ou não pertence ao usuário.', 404);
+        }
+
+        return $link;
+    }
+
+    public function findBySlug(string $slug)
+    {
+        $user = auth()->user();
+
+        // Verifica se o link pertence ao usuário
+        if (!$link = $this->repository->findLinkBySlugAndUser($slug, $user->id)) {
             throw new \Exception('Link não encontrado ou não pertence ao usuário.', 404);
         }
 

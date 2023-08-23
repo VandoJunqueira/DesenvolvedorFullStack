@@ -22,11 +22,11 @@ class LinkController extends Controller
      */
     public function index()
     {
-        try {
-            return response()->json($this->services->paginate());
-        } catch (\Throwable $th) {
+       /*  try { */
+            return response()->json($this->services->filter()->paginate(10));
+        /* } catch (\Throwable $th) {
             return response()->json(['message' => 'Ocorreu um erro.'], 505);
-        }
+        } */
     }
 
     /**
@@ -54,10 +54,10 @@ class LinkController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
         try {
-            $link = $this->services->find($id);
+            $link = $this->services->findBySlug($slug);
             return response()->json($link, 200);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], $th->getCode() ?: 505);

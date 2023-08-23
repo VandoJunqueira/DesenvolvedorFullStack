@@ -112,9 +112,4 @@ class Repository
             throw new \Exception('Ocorreu um erro ao excluir!.', 505);
         }
     }
-
-    public function paginate($per_page = 20)
-    {
-        return $this->model->paginate($per_page);
-    }
 }

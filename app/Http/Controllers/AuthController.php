@@ -27,7 +27,6 @@ class AuthController extends Controller
 
         $token = auth()->user()->createToken('access_token')->plainTextToken;
 
-
         return response()->json(['user' => auth()->user(), 'token' => $token, 'status' => true], 200);
     }
 
@@ -38,7 +37,7 @@ class AuthController extends Controller
 
             $token = $user->createToken('access_token')->plainTextToken;
 
-            return response()->json(['user' => auth()->user(), 'token' => $token, 'status' => true], 200);
+            return response()->json(['user' => $user, 'token' => $token, 'status' => true], 200);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], $th->getCode() ?: 505);
         }

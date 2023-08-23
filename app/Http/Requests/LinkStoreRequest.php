@@ -22,10 +22,8 @@ class LinkStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'url' => "required",
-            'slug' => "unique:links,slug,{$this->id},id|max:150"
+            'long_link' => "required",
+            'slug' => "unique:links,slug,'.$this->id.',id|max:150",
         ];
     }
-
-
 }

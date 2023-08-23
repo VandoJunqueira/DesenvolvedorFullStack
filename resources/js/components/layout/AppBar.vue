@@ -1,31 +1,44 @@
 <template>
     <div class="shadow-sm row justify-content-between bg-white p-4 position-fixed" id="nav-bar-top">
-        <div class="col-3">DDSV</div>
-        <div class="col-6">
+        <div class="col-3">LOGO</div>
 
-            <div class="input-group justify-content-center">
-                <button class="input-group-text border-0 bg-transparent">
-                    <vue-feather type="search"></vue-feather>
-                </button>
-                <input type="text" class="form-control border-0 form-control-lg" id="input-search"
-                    placeholder="Pesquisar ou colar URL">
-                <button class="input-group-text border-0 bg-transparent">
-                    <vue-feather type="plus"></vue-feather>
-                </button>
-            </div>
+        <InputSearchCreate class="col-6" />
+
+        <div v-if="user == null" class="col-3 d-flex justify-content-end">
+
+            <router-link type="button" class="btn btn-outline-dark me-2 align-items-center d-flex"
+                :to="{ name: 'login' }">Entrar</router-link>
+            <router-link type="button" class="btn btn-info text-white align-items-center d-flex"
+                :to="{ name: 'sing-up' }">Cadastrar</router-link>
+
         </div>
-        <div class="col-3 d-flex justify-content-end">
+
+        <div v-else class="col-3 d-flex justify-content-end">
 
             <button class="btn"><vue-feather type="bell" size="20" class="text-black-50"></vue-feather></button>
 
             <div class="dropdown">
                 <button class="btn d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <Avatar src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" size="avatar-xl" />
+                    <Avatar :src="user.avatar" size="avatar-xl" />
                     <vue-feather type="chevron-down" size="18"></vue-feather>
                 </button>
                 <ul class="dropdown-menu shadow-sm border-0">
+                    <li>
+                        <div class="dropdown-item pt-2">
+                            <div class="text-center">
+                                <div>
+                                    <Avatar class="border border-1 p-1" :src="user.avatar" size="avatar-3xl" />
+                                </div>
+                                <div>{{ user.name }}</div>
+                                <div class="small text-muted">{{ user.email }}</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border border-bottom border-1"></div>
+                    </li>
                     <li><a class="dropdown-item" href="#">Perfil</a></li>
-                    <li><a class="dropdown-item" href="#">Sair</a></li>
+                    <li><a class="dropdown-item" href="#" @click.prevent="logout">Sair</a></li>
                 </ul>
             </div>
 
@@ -37,21 +50,35 @@
 <script>
 
 import Avatar from '@/components/Avatar.vue';
+import InputSearchCreate from '@/components/layout/InputSearchCreate.vue';
 
 export default {
     name: 'AppBar',
-    components: { Avatar },
+    components: { Avatar, InputSearchCreate },
+    data() {
+        return {
+            user: {}
+        }
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch("logOut");
+            this.$router.push("/");
+        }
+    },
+    mounted() {
+        this.user = this.$store.state.auth.user;
+    },
+    watch: {
+        '$store.state.auth.user'(user) {
+            this.user = user;
+        }
+    },
 }
 </script>
 
 <style scoped>
-#input-search {
-    border-radius: 5px;
-    max-width: 900px;
-    background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
-}
-
-#input-search::placeholder {
-    text-align: center;
+#nav-bar-top {
+    z-index: 99998;
 }
 </style>
