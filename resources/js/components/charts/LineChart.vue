@@ -1,6 +1,6 @@
 <template>
     <div>
-        <apexchart ref="apexChart" type="line" :options="chartOptions" :series="chartSeries"></apexchart>
+        <apexchart type="line" :options="chartOptions" :series="chartSeries"></apexchart>
     </div>
 </template>
 
@@ -11,31 +11,26 @@ export default {
     components: {
         apexchart: VueApexCharts
     },
+    props: {
+        data: {
+            type: Array,
+            required: true
+        }
+    },
     data() {
         return {
             chartOptions: {
                 xaxis: {
-                    categories: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio']
+                    categories: this.data.map(item => item.date)
                 }
             },
             chartSeries: [
                 {
                     name: 'Cliques',
-                    data: [65, 59, 80, 81, 56]
+                    data: this.data.map(item => item.count)
                 }
             ]
         };
-    },
-    mounted() {
-        this.updateChart();
-    },
-    methods: {
-        updateChart() {
-            if (this.$refs.apexChart) {
-                // this.$refs.apexChart.updateOptions(this.chartOptions);
-                // this.$refs.apexChart.updateSeries(this.chartSeries);
-            }
-        }
     }
 };
 </script>
