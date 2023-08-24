@@ -1,21 +1,21 @@
 # Teste - Desenvolvedor Full Stack | Laravel + Vue | Pleno
 
-Neste projeto, foi desenvolvida uma aplicação de encurtamento de links, similar ao serviço conhecido como [bit.ly](https://laravel.com/docs/10.x/sail). O desafio envolveu a criação de um frontend utilizando Vue.js, um backend com Laravel e a utilização de um banco de dados relacional (MySQL/MariaDB). O foco foi garantir a utilização das melhores práticas de programação, design patterns e construção de um código limpo e bem estruturado.
+Neste projeto, foi desenvolvida uma aplicação de encurtamento de links, similar ao serviço conhecido como [bit.ly](https://laravel.com/docs/10.x/sail){:target="_blank"}. O desafio envolveu a criação de um frontend utilizando Vue.js, um backend com Laravel e a utilização de um banco de dados relacional (MySQL/MariaDB). O foco foi garantir a utilização das melhores práticas de programação, design patterns e construção de um código limpo e bem estruturado.
 
 ## Guia de Instalação
 
-Este guia descreve os passos necessários para instalar e configurar a aplicação, que utiliza o [Laravel Sail](https://laravel.com/docs/10.x/sail) para o backend e Vue.js 3 com Vite para o frontend. Certifique-se de seguir cada etapa cuidadosamente para garantir uma instalação bem-sucedida.
+Este guia descreve os passos necessários para instalar e configurar a aplicação, que utiliza o [Laravel Sail](https://laravel.com/docs/10.x/sail){:target="_blank"} para o backend e Vue.js 3 com Vite para o frontend. Certifique-se de seguir cada etapa cuidadosamente para garantir uma instalação bem-sucedida.
 
-Caso esteja no Windows acesse a [documentação](https://laravel.com/docs/10.x/installation#getting-started-on-windows) do Laravel para mais informações.
+Caso esteja no Windows acesse a [documentação](https://laravel.com/docs/10.x/installation#getting-started-on-windows){:target="_blank"} do Laravel para mais informações.
 
 ## Pré-requisitos
 
 Antes de começar, certifique-se de ter o seguinte instalado no seu sistema:
 
-- [Docker](https://www.docker.com/get-started)
-- [Git](https://git-scm.com/)
-- [Composer](https://getcomposer.org/)
-- [Node.js](https://nodejs.org/)
+- [Docker](https://www.docker.com/get-started){:target="_blank"}
+- [Git](https://git-scm.com/){:target="_blank"}
+- [Composer](https://getcomposer.org/){:target="_blank"}
+- [Node.js](https://nodejs.org/){:target="_blank"}
 
 # Passos de Instalação
 
@@ -46,8 +46,10 @@ cp .env.example .env
 
 ### 4. Iniciar o Laravel Sail
 
+Se tiver no windows acessa o terminar do Linux com o comando `wsl`
+
 ```sh
-./vendor/bin/sail up
+./vendor/bin/sail up -d
 ```
 
 No entanto, em vez de digitar repetidamente `vendor/bin/sail` para executar comandos do Sail, você pode configurar um alias de shell que permita executar os comandos do Sail com mais facilidade:
@@ -57,6 +59,20 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 ```
 
 Depois que o alias do shell tiver sido configurado, você poderá executar comandos Sail simplesmente digitando `sail`. O restante dos exemplos desta documentação assumirá que você configurou este alias:
+
+#### Construir as imagem do contêiner
+
+Este processo pode levar algum tempo para ser concluído.
+
+```sh
+sail build --no-cache
+```
+
+#### Iniciar o Laravel Sail
+
+```sh
+sail up -d
+```
 
 ### 5. Executar migração
 
@@ -84,4 +100,4 @@ sail npm run build
 
 ### 9. Acessar a Aplicação
 
-Abra o seu navegador e acesse [http://localhost](http://localhost) para visualizar a aplicação em funcionamento.
+Abra o seu navegador e acesse [http://localhost](http://localhost){:target="_blank"} para visualizar a aplicação em funcionamento.
