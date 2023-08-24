@@ -3,7 +3,7 @@
         <template v-slot="{ data }">
             <div v-if="Object.keys(data).length > 0">
 
-                <div class="row justify-content-between">
+                <div class="row justify-content-between overflow-auto">
                     <CardStats v-for="(stats, index) in data.stats" :key="index" :icon="stats.icon" :count="stats.count"
                         :title="stats.title" class="col-2"></CardStats>
 
@@ -17,14 +17,14 @@
 
                 <div class="mt-5">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-12 mb-3">
                             <div class="card">
                                 <div class="card-body">
                                     <LineChart  :data="data.graphic"/>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-md-3 col-12 mb-3">
                             <div class="card overflow-hidden">
                                 <div class="card-header bg-white fw-bold">
                                     Principais Navegadores
@@ -49,7 +49,7 @@
                             </div>
                         </div>
 
-                        <div class="col-3">
+                        <div class="col-md-3 col-12 mb-3">
                             <div class="card overflow-hidden">
                                 <div class="card-header bg-white fw-bold">
                                     Principais Sistemas Operacionais

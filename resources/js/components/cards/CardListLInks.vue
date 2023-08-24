@@ -51,35 +51,41 @@
                                     {{ link.title }}
                                 </router-link>
                                 <div>
-                                    <a class="link-info text-decoration-none" target="_black" :href="$app_url + link.slug">
-                                        {{ $app_url + link.slug }}
-                                    </a>
-                                </div>
-                                <div v-if="details">
-                                    <a class="link-info text-decoration-none text-dark small mt-1" target="_black"
-                                        :href="$app_url + link.slug">
-                                        {{ link.long_link }}
-                                    </a>
-
-                                    <div class="mt-5 d-flex align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <vue-feather type="calendar" size="20" class="text-black-50 me-2"></vue-feather>
-                                            {{ $utility.date(link.created_at, 'D MMMM YYYY - HH:mm') }}
-                                        </div>
-                                        <div class="stats-link details ms-3">
-                                            <vue-feather type="bar-chart-2" size="20"
-                                                class="text-black-50 ms-1"></vue-feather>
-                                            <vue-feather type="bar-chart" size="20"
-                                                class="text-black-50 bar-chart"></vue-feather>
-                                            {{ link.hit_counter || 0 }}
-                                        </div>
+                                    <div>
+                                        <a class="link-info text-decoration-none" target="_black"
+                                            :href="$app_url + link.slug">
+                                            {{ $app_url + link.slug }}
+                                        </a>
                                     </div>
+
+                                    <div v-if="details">
+                                        <a class="link-info text-decoration-none text-dark small mt-1 text-break" target="_black"
+                                            :href="$app_url + link.slug">
+                                            {{ link.long_link }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div v-if="details">
+
+
+                            <div class="mt-5 d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <vue-feather type="calendar" size="20" class="text-black-50 me-2"></vue-feather>
+                                    {{ $utility.date(link.created_at, 'D MMMM YYYY - HH:mm') }}
+                                </div>
+                                <div class="stats-link details ms-3">
+                                    <vue-feather type="bar-chart-2" size="20" class="text-black-50 ms-1"></vue-feather>
+                                    <vue-feather type="bar-chart" size="20" class="text-black-50 bar-chart"></vue-feather>
+                                    {{ link.hit_counter || 0 }}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="d-flex">
+                <div class="d-md-flex d-none">
                     <div v-if="!details" class="ps-3 pe-3">
                         <button class="btn">
                             <div class="stats-link">

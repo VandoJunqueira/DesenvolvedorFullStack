@@ -15,7 +15,7 @@
             </Input>
 
             <Input v-model.lazy="formData.slug" v-on:keyup="formatSlug" @change="checkSlug()" :value="formData.slug"
-                ariaLabel="Campo para digitar o SLUG" classes="col-6 mb-4" placeholder="Exemplo: link-favorito"
+                ariaLabel="Campo para digitar o SLUG" classes="col-md-6 col-12 mb-4" placeholder="Exemplo: link-favorito"
                 :errors="apiErrors.slug" :required="required && !this.copy">
             <template #label>
                 Insira um Slug (opcional)

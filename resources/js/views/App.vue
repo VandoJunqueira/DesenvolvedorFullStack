@@ -5,15 +5,17 @@
         <router-view></router-view>
 
     </div>
+    <FloatingButton class="btn-flex d-md-none" />
 </template>
 
 
 <script>
 import AppBar from '@/components/layout/AppBar.vue'
+import FloatingButton from '@/components/buttons/FloatingButton.vue'
 
 export default {
     name: 'App',
-    components: { AppBar },
+    components: { AppBar, FloatingButton },
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
     <DataProvider :url="'/metrics'">
         <template v-slot="{ data }">
-            <div v-if="Object.keys(data).length > 0" class="row justify-content-between">
+            <div v-if="Object.keys(data).length > 0" class="row justify-content-between overflow-auto">
                 <CardStats v-for="(stats, index) in data.stats" :key="index" :icon="stats.icon" :count="stats.count"
                     :title="stats.title" class="col-2"></CardStats>
 
@@ -23,12 +23,12 @@
             </button>
             <button type="button" class="btn btn-green" @click="modal_filter = true">
                 <div class="d-flex align-items-center">
-                    <vue-feather type="sliders" size="20" class="me-2"></vue-feather> <span>Filtrar</span>
+                    <vue-feather type="sliders" size="20" class="me-2"></vue-feather> <span class="d-md-inline d-none">Filtrar</span>
                 </div>
             </button>
             <button type="button" class="btn btn-green" v-if="has_filter" @click="clearFilter">
                 <div class="d-flex align-items-center">
-                    <vue-feather type="x-square" size="16" class="me-2"></vue-feather> <span>Limpar</span>
+                    <vue-feather type="x-square" size="16" class="me-2"></vue-feather> <span class="d-md-inline d-none">Limpar</span>
                 </div>
             </button>
         </div>

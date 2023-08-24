@@ -2,7 +2,7 @@
     <BackButton />
 
     <div class="card mt-3">
-        <div class="card-body ps-5 pe-5">
+        <div class="card-body ps-md-5 pe-md-5">
 
             <h3 class="mb-4">Editar</h3>
 

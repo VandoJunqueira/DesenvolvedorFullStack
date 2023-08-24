@@ -47,7 +47,7 @@ const routes = [
     {
         path: '/dashboard/stats',
         name: 'dashboard.stats',
-        component: () => import(/* webpackChunkName: "dashboard" */ '../views/StatsPage.vue'),
+        component: () => import(/* webpackChunkName: "dashboard" */ '../views/links/StatsPage.vue'),
         meta: {
             requeresAuth: true,
         },

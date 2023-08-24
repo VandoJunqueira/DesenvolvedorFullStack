@@ -1,12 +1,20 @@
 <template>
-    <div class="shadow-sm row justify-content-between bg-white p-4 position-fixed" id="nav-bar-top">
+    <div v-if="show_search" class="shadow-sm row justify-content-between bg-white p-4 position-fixed" id="nav-bar-top">
+        <button class="btn col-1" @click="show_search = false"><vue-feather type="chevron-left" size="22"
+                class="text-black-50"></vue-feather></button>
+        <InputSearchCreate class="col-11" />
+    </div>
+    <div v-else class="shadow-sm row justify-content-between bg-white p-4 position-fixed" id="nav-bar-top">
         <div class="col-3">
 
-            <a href="/"><img :src="logo" height="45" alt="Logo"></a>
+            <a href="/">
+                <img :src="logo" height="45" class="d-md-inline-block d-none" alt="Logo">
+                <img :src="icon" height="45" class="d-inline-block d-md-none" alt="Logo">
+            </a>
 
         </div>
 
-        <InputSearchCreate class="col-6" />
+        <InputSearchCreate class="col-6 d-md-inline-block d-none" />
 
         <div v-if="user == null" class="col-3 d-flex justify-content-end">
 
@@ -18,7 +26,8 @@
         </div>
 
         <div v-else class="col-3 d-flex justify-content-end">
-
+            <button class="btn" @click="show_search = true"><vue-feather type="search" size="20"
+                    class="text-black-50"></vue-feather></button>
             <button class="btn"><vue-feather type="bell" size="20" class="text-black-50"></vue-feather></button>
 
             <div class="dropdown">
@@ -64,6 +73,7 @@
 import Avatar from '@/components/Avatar.vue';
 import InputSearchCreate from '@/components/layout/InputSearchCreate.vue';
 import Logo from '@/img/logo.png';
+import Icon from '@/img/icon.png';
 
 export default {
     name: 'AppBar',
@@ -71,7 +81,9 @@ export default {
     data() {
         return {
             user: {},
-            logo: Logo
+            logo: Logo,
+            icon: Icon,
+            show_search: false
         }
     },
     methods: {

@@ -4,7 +4,8 @@
         <router-link v-for="menu in menus" :key="menu.slug" type="button" class="btn btn-green"
             :class="{ 'active-info text-info': menu.slug == active }" :to="menu.router">
             <div class="d-flex align-items-center">
-                <vue-feather :type="menu.icon" size="20" class="me-2"></vue-feather> <span v-if="menu.slug == active">
+                <vue-feather :type="menu.icon" size="20"></vue-feather>
+                <span v-if="menu.slug == active" class="d-md-inline d-none ms-2">
                     {{ menu.title }}
                 </span>
             </div>
