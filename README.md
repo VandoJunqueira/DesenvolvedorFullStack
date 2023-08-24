@@ -1,21 +1,21 @@
 # Teste - Desenvolvedor Full Stack | Laravel + Vue | Pleno
 
-Neste projeto, foi desenvolvida uma aplicação de encurtamento de links, similar ao serviço conhecido como [bit.ly](https://laravel.com/docs/10.x/sail){:target="_blank"}. O desafio envolveu a criação de um frontend utilizando Vue.js, um backend com Laravel e a utilização de um banco de dados relacional (MySQL/MariaDB). O foco foi garantir a utilização das melhores práticas de programação, design patterns e construção de um código limpo e bem estruturado.
+Neste projeto, foi desenvolvida uma aplicação de encurtamento de links, similar ao serviço conhecido como [bit.ly](https://laravel.com/docs/10.x/sail). O desafio envolveu a criação de um frontend utilizando Vue.js, um backend com Laravel e a utilização de um banco de dados relacional (MySQL/MariaDB). O foco foi garantir a utilização das melhores práticas de programação, design patterns e construção de um código limpo e bem estruturado.
 
 ## Guia de Instalação
 
-Este guia descreve os passos necessários para instalar e configurar a aplicação, que utiliza o [Laravel Sail](https://laravel.com/docs/10.x/sail){:target="_blank"} para o backend e Vue.js 3 com Vite para o frontend. Certifique-se de seguir cada etapa cuidadosamente para garantir uma instalação bem-sucedida.
+Este guia descreve os passos necessários para instalar e configurar a aplicação, que utiliza o [Laravel Sail](https://laravel.com/docs/10.x/sail) para o backend e Vue.js 3 com Vite para o frontend. Certifique-se de seguir cada etapa cuidadosamente para garantir uma instalação bem-sucedida.
 
-Caso esteja no Windows acesse a [documentação](https://laravel.com/docs/10.x/installation#getting-started-on-windows){:target="_blank"} do Laravel para mais informações.
+Caso esteja no Windows acesse a [documentação](https://laravel.com/docs/10.x/installation#getting-started-on-windows) do Laravel para mais informações.
 
 ## Pré-requisitos
 
 Antes de começar, certifique-se de ter o seguinte instalado no seu sistema:
 
-- [Docker](https://www.docker.com/get-started){:target="_blank"}
-- [Git](https://git-scm.com/){:target="_blank"}
-- [Composer](https://getcomposer.org/){:target="_blank"}
-- [Node.js](https://nodejs.org/){:target="_blank"}
+- [Docker](https://www.docker.com/get-started)
+- [Git](https://git-scm.com/)
+- [Composer](https://getcomposer.org/)
+- [Node.js](https://nodejs.org/)
 
 # Passos de Instalação
 
@@ -97,4 +97,4 @@ sail npm run build
 
 ### 9. Acessar a Aplicação
 
-Abra o seu navegador e acesse [http://localhost](http://localhost){:target="_blank"} para visualizar a aplicação em funcionamento.
+Abra o seu navegador e acesse [http://localhost](http://localhost) para visualizar a aplicação em funcionamento.
