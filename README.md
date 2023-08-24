@@ -24,7 +24,7 @@ Antes de começar, certifique-se de ter o seguinte instalado no seu sistema:
 Clone o repositório da aplicação a partir do repositório Git:
 
 ```sh
-git clone https://github.com/VandoJunqueira/DesenvolvedorFullStack.git
+git clone https://github.com/VandoJunqueira/Teste_Desenvolvedor_Full_Stack_Laravel.git
 ```
 
 ### 2. Instalar as Dependências do Backend
@@ -32,7 +32,7 @@ git clone https://github.com/VandoJunqueira/DesenvolvedorFullStack.git
 Navegue até o diretório da aplicação clonada e instale as dependências do backend usando o Composer:
 
 ```sh
-cd DesenvolvedorFullStack
+cd Teste_Desenvolvedor_Full_Stack_Laravel
 composer install
 ```
 
@@ -59,16 +59,6 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 ```
 
 Depois que o alias do shell tiver sido configurado, você poderá executar comandos Sail simplesmente digitando `sail`. O restante dos exemplos desta documentação assumirá que você configurou este alias:
-
-#### Construir as imagem do contêiner
-
-Este processo pode levar algum tempo para ser concluído.
-
-```sh
-sail build --no-cache
-```
-
-#### Iniciar o Laravel Sail
 
 ```sh
 sail up -d
