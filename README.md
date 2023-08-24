@@ -1,66 +1,87 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Teste - Desenvolvedor Full Stack | Laravel + Vue | Pleno
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Neste projeto, foi desenvolvida uma aplicação de encurtamento de links, similar ao serviço conhecido como [bit.ly](https://laravel.com/docs/10.x/sail). O desafio envolveu a criação de um frontend utilizando Vue.js, um backend com Laravel e a utilização de um banco de dados relacional (MySQL/MariaDB). O foco foi garantir a utilização das melhores práticas de programação, design patterns e construção de um código limpo e bem estruturado.
 
-## About Laravel
+## Guia de Instalação
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Este guia descreve os passos necessários para instalar e configurar a aplicação, que utiliza o [Laravel Sail](https://laravel.com/docs/10.x/sail) para o backend e Vue.js 3 com Vite para o frontend. Certifique-se de seguir cada etapa cuidadosamente para garantir uma instalação bem-sucedida.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Caso esteja no Windows acesse a [documentação](https://laravel.com/docs/10.x/installation#getting-started-on-windows) do Laravel para mais informações.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Pré-requisitos
 
-## Learning Laravel
+Antes de começar, certifique-se de ter o seguinte instalado no seu sistema:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- [Docker](https://www.docker.com/get-started)
+- [Git](https://git-scm.com/)
+- [Composer](https://getcomposer.org/)
+- [Node.js](https://nodejs.org/)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+# Passos de Instalação
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1. Clone Repositório
 
-## Laravel Sponsors
+Clone o repositório da aplicação a partir do repositório Git:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```sh
+git clone https://github.com/VandoJunqueira/DesenvolvedorFullStack.git
+```
 
-### Premium Partners
+### 2. Instalar as Dependências do Backend
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Navegue até o diretório da aplicação clonada e instale as dependências do backend usando o Composer:
 
-## Contributing
+```sh
+cd DesenvolvedorFullStack
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Configurar o Arquivo .env
 
-## Code of Conduct
+Duplique o arquivo .env.example e renomeie-o para .env.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```sh
+cp .env.example .env
+```
 
-## Security Vulnerabilities
+### 4. Iniciar o Laravel Sail
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```sh
+./vendor/bin/sail up
+```
 
-## License
+No entanto, em vez de digitar repetidamente `vendor/bin/sail` para executar comandos do Sail, você pode configurar um alias de shell que permita executar os comandos do Sail com mais facilidade:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```sh
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+```
+
+Depois que o alias do shell tiver sido configurado, você poderá executar comandos Sail simplesmente digitando `sail`. O restante dos exemplos desta documentação assumirá que você configurou este alias:
+
+### 5. Executar migração
+
+```sh
+sail artisan migrate
+```
+
+### 6. Executar o seeder para popular a tabela
+
+```sh
+sail artisan db:seed
+```
+
+### 7. Instalar as Dependências do Frontend
+
+```sh
+sail npm install
+```
+
+### 8. Compilar o Frontend
+
+```sh
+sail npm run build
+```
+
+### 9. Acessar a Aplicação
+
+Abra o seu navegador e acesse [http://localhost](http://localhost) para visualizar a aplicação em funcionamento.
