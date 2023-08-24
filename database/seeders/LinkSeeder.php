@@ -16,9 +16,9 @@ class LinkSeeder extends Seeder
         $links = [
             [
                 'long_link' => 'https://www.esteticaexperts.com.br',
-                'slug' => 'i3E3s9',
                 'title' => 'Estética Experts - Cursos Online para Profissionais de Estética',
                 'favicon' => 'https://www.esteticaexperts.com.br/favicon.ico',
+                'slug' => 'i3E3s9',
                 'user_id' => 1,
                 'hit_counter' => 5,
             ],
@@ -31,7 +31,7 @@ class LinkSeeder extends Seeder
                 'hit_counter' => 2,
             ],
             [
-                'long_link' => 'https://www.youtube.com/watch?v=QgaTQ5-XfMM&list=RDEMdVnVIAwYlB4zIe31nRwa4Q&start_radio=1',
+                'long_link' => 'https://dribbble.com/shots/17087324-DDSV-Link-Shortener',
                 'title' => 'Dribbble - DDSV_Link_Shortener.png by Daniel Dogeanu',
                 'favicon' => 'https://cdn.dribbble.com/assets/favicon-b38525134603b9513174ec887944bde1a869eb6cd414f4d640ee48ab2a15a26b.ico',
                 'slug' => 'meu-link',
