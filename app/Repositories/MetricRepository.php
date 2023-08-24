@@ -45,7 +45,6 @@ class MetricRepository extends Repository
     public function getMetricsChart()
     {
         $user = auth()->user();
-        $filterType = 'day'; // 'day' or 'month'
 
         return  $user->links()
             ->join('metrics', 'links.id', '=', 'metrics.link_id')
@@ -53,11 +52,7 @@ class MetricRepository extends Repository
                 DB::raw("DATE_FORMAT(metrics.created_at, '%d-%m') as date"),
                 DB::raw('COUNT(*) as count')
             )
-            ->when($filterType === 'month', function ($query) {
-                return $query->groupBy(DB::raw('YEAR(metrics.created_at), MONTH(metrics.created_at)'));
-            }, function ($query) {
-                return $query->groupBy(DB::raw('DATE_FORMAT(metrics.created_at, "%d-%m")'));
-            })
+            ->groupBy(DB::raw('DATE_FORMAT(metrics.created_at, "%d-%m")'))
             ->get();
     }
 }

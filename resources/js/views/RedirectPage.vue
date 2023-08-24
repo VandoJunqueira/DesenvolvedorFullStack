@@ -11,7 +11,7 @@
 <script>
 
 export default {
-    name: 'NotFound',
+    name: 'RedirectPage',
     data() {
         return {
             slug: ''

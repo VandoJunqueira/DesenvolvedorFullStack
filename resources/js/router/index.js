@@ -101,6 +101,14 @@ const routes = [
         },
     },
     {
+        path: '/404',
+        name: 'not_found',
+        component: () => import(/* webpackChunkName: "not_found" */ '../views/NotFoundPage.vue'),
+        meta: {
+            requeresAuth: true,
+        },
+    },
+    {
         path: '/:pathMatch(.*)',
         component: RedirectPage,
     },
