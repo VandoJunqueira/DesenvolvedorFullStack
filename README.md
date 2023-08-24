@@ -70,6 +70,13 @@ sail up -d
 sail artisan migrate
 ```
 
+Após a execução do migrate é criado um usuário de teste:
+
+```sh
+email: test@example.com
+senha: 123456
+```
+
 ### 6. Executar o seeder para popular a tabela
 
 ```sh
