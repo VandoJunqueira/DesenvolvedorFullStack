@@ -85,6 +85,10 @@ class LinkServices
         return $link;
     }
 
+    public function count()
+    {
+    }
+
     public function metric(string $slug)
     {
         // Encontra o link correspondente ao slug fornecido

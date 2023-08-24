@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import NotFound from '../views/NotFound.vue'
+import RedirectPage from '../views/RedirectPage.vue'
 import store from '../config/vuex/store';
 
 
@@ -86,7 +86,7 @@ const routes = [
     },
     {
         path: '/:pathMatch(.*)',
-        component: NotFound,
+        component: RedirectPage,
     },
 ]
 

@@ -74,7 +74,7 @@ class LinkControllerTest extends TestCase
     # php artisan test --filter=LinkControllerTest::test_redirect
     public function test_redirect(): void
     {
-        $response = $this->get('/hkcGV9s');
+        $response = $this->post('/XCIvRiI');
 
         $response->assertStatus(302);
     }

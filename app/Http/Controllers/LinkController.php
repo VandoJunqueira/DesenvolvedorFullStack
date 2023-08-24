@@ -88,10 +88,13 @@ class LinkController extends Controller
 
     public function redirect(string $slug)
     {
+        try {
+            $link = $this->services->metric($slug);
 
-        $link = $this->services->metric($slug);
-
-        return response()->redirectTo($link->long_link);
+            return response()->json($link, 200);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], $th->getCode() ?: 505);
+        }
     }
 
     public function checkSlug(Request $request)
