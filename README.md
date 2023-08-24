@@ -98,3 +98,8 @@ sail npm run build
 ### 9. Acessar a Aplicação
 
 Abra o seu navegador e acesse [http://localhost](http://localhost) para visualizar a aplicação em funcionamento.
+
+
+## Créditos
+
+Este projeto foi desenvolvido por [Vando Junqueira](https://github.com/VandoJunqueira/) como parte de um teste prático.
