@@ -1,21 +1,21 @@
 # Teste - Desenvolvedor Full Stack | Laravel + Vue | Pleno
 
-Neste projeto, foi desenvolvida uma aplicação de encurtamento de links, similar ao serviço conhecido como [bit.ly](https://laravel.com/docs/10.x/sail){:target="_blank"}. O desafio envolveu a criação de um frontend utilizando Vue.js, um backend com Laravel e a utilização de um banco de dados relacional (MySQL/MariaDB). O foco foi garantir a utilização das melhores práticas de programação, design patterns e construção de um código limpo e bem estruturado.
+Neste projeto, foi desenvolvida uma aplicação de encurtamento de links, similar ao serviço conhecido como [bit.ly](https://laravel.com/docs/10.x/sail). O desafio envolveu a criação de um frontend utilizando Vue.js, um backend com Laravel e a utilização de um banco de dados relacional (MySQL/MariaDB). O foco foi garantir a utilização das melhores práticas de programação, design patterns e construção de um código limpo e bem estruturado.
 
 ## Guia de Instalação
 
-Este guia descreve os passos necessários para instalar e configurar a aplicação, que utiliza o [Laravel Sail](https://laravel.com/docs/10.x/sail){:target="_blank"} para o backend e Vue.js 3 com Vite para o frontend. Certifique-se de seguir cada etapa cuidadosamente para garantir uma instalação bem-sucedida.
+Este guia descreve os passos necessários para instalar e configurar a aplicação, que utiliza o [Laravel Sail](https://laravel.com/docs/10.x/sail) para o backend e Vue.js 3 com Vite para o frontend. Certifique-se de seguir cada etapa cuidadosamente para garantir uma instalação bem-sucedida.
 
-Caso esteja no Windows acesse a [documentação](https://laravel.com/docs/10.x/installation#getting-started-on-windows){:target="_blank"} do Laravel para mais informações.
+Caso esteja no Windows acesse a [documentação](https://laravel.com/docs/10.x/installation#getting-started-on-windows) do Laravel para mais informações.
 
 ## Pré-requisitos
 
 Antes de começar, certifique-se de ter o seguinte instalado no seu sistema:
 
-- [Docker](https://www.docker.com/get-started){:target="_blank"}
-- [Git](https://git-scm.com/){:target="_blank"}
-- [Composer](https://getcomposer.org/){:target="_blank"}
-- [Node.js](https://nodejs.org/){:target="_blank"}
+- [Docker](https://www.docker.com/get-started)
+- [Git](https://git-scm.com/)
+- [Composer](https://getcomposer.org/)
+- [Node.js](https://nodejs.org/)
 
 # Passos de Instalação
 
@@ -24,7 +24,7 @@ Antes de começar, certifique-se de ter o seguinte instalado no seu sistema:
 Clone o repositório da aplicação a partir do repositório Git:
 
 ```sh
-git clone https://github.com/VandoJunqueira/DesenvolvedorFullStack.git
+git clone https://github.com/VandoJunqueira/Teste_Desenvolvedor_Full_Stack_Laravel.git
 ```
 
 ### 2. Instalar as Dependências do Backend
@@ -32,7 +32,7 @@ git clone https://github.com/VandoJunqueira/DesenvolvedorFullStack.git
 Navegue até o diretório da aplicação clonada e instale as dependências do backend usando o Composer:
 
 ```sh
-cd DesenvolvedorFullStack
+cd Teste_Desenvolvedor_Full_Stack_Laravel
 composer install
 ```
 
@@ -60,16 +60,6 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 
 Depois que o alias do shell tiver sido configurado, você poderá executar comandos Sail simplesmente digitando `sail`. O restante dos exemplos desta documentação assumirá que você configurou este alias:
 
-#### Construir as imagem do contêiner
-
-Este processo pode levar algum tempo para ser concluído.
-
-```sh
-sail build --no-cache
-```
-
-#### Iniciar o Laravel Sail
-
 ```sh
 sail up -d
 ```
@@ -78,6 +68,13 @@ sail up -d
 
 ```sh
 sail artisan migrate
+```
+
+Após a execução do migrate é criado um usuário de teste:
+
+```sh
+email: test@example.com
+senha: 123456
 ```
 
 ### 6. Executar o seeder para popular a tabela
@@ -100,4 +97,9 @@ sail npm run build
 
 ### 9. Acessar a Aplicação
 
-Abra o seu navegador e acesse [http://localhost](http://localhost){:target="_blank"} para visualizar a aplicação em funcionamento.
+Abra o seu navegador e acesse [http://localhost](http://localhost) para visualizar a aplicação em funcionamento.
+
+
+## Créditos
+
+Este projeto foi desenvolvido por [Vando Junqueira](https://github.com/VandoJunqueira/) como parte de um teste prático.
