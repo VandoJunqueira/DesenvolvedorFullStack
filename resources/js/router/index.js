@@ -7,7 +7,7 @@ const routes = [
     {
         path: '/login',
         name: 'login',
-        component: () => import(/* webpackChunkName: "login" */ '../views/LoginPage.vue'),
+        component: () => import(/* webpackChunkName: "login" */ '../views/auth/LoginPage.vue'),
         meta: {
             requeresAuth: false,
         },
@@ -15,7 +15,7 @@ const routes = [
     {
         path: '/sing-up',
         name: 'sing-up',
-        component: () => import(/* webpackChunkName: "login" */ '../views/SignUpPage.vue'),
+        component: () => import(/* webpackChunkName: "login" */ '../views/auth/SignUpPage.vue'),
         meta: {
             requeresAuth: false,
         },
@@ -55,7 +55,7 @@ const routes = [
     {
         path: '/dashboard/links/create',
         name: 'dashboard.create',
-        component: () => import(/* webpackChunkName: "dashboard.links" */ '../views/CreateLinkPage.vue'),
+        component: () => import(/* webpackChunkName: "dashboard.links" */ '../views/links/CreateLinkPage.vue'),
         meta: {
             requeresAuth: true,
         },
@@ -63,7 +63,7 @@ const routes = [
     {
         path: '/dashboard/links/:slug/edit',
         name: 'dashboard.edit',
-        component: () => import(/* webpackChunkName: "dashboard.links" */ '../views/EditLinkPage.vue'),
+        component: () => import(/* webpackChunkName: "dashboard.links" */ '../views/links/EditLinkPage.vue'),
         meta: {
             requeresAuth: true,
         },
@@ -71,7 +71,7 @@ const routes = [
     {
         path: '/dashboard/links/:slug/copy',
         name: 'dashboard.copy',
-        component: () => import(/* webpackChunkName: "dashboard.links" */ '../views/CopyLinkPage.vue'),
+        component: () => import(/* webpackChunkName: "dashboard.links" */ '../views/links/CopyLinkPage.vue'),
         meta: {
             requeresAuth: true,
         },
@@ -79,7 +79,7 @@ const routes = [
     {
         path: '/dashboard/links/:slug/details',
         name: 'dashboard.details',
-        component: () => import(/* webpackChunkName: "dashboard.links" */ '../views/DetailsLinkPage.vue'),
+        component: () => import(/* webpackChunkName: "dashboard.links" */ '../views/links/DetailsLinkPage.vue'),
         meta: {
             requeresAuth: true,
         },
