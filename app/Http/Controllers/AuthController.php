@@ -33,7 +33,11 @@ class AuthController extends Controller
     public function signUp(AuthSingUpRequest $request)
     {
         try {
-            $user = $this->services->store($request->all());
+            $user = $this->services->store([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
             $token = $user->createToken('access_token')->plainTextToken;
 

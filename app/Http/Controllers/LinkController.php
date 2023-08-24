@@ -22,11 +22,11 @@ class LinkController extends Controller
      */
     public function index()
     {
-        /*  try { */
-        return response()->json($this->services->filter()->paginate(10));
-        /* } catch (\Throwable $th) {
-            return response()->json(['message' => 'Ocorreu um erro.'], 505);
-        } */
+        try {
+            return response()->json($this->services->filter()->paginate(10));
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], $th->getCode() ?: 505);
+        }
     }
 
     /**
@@ -44,7 +44,6 @@ class LinkController extends Controller
     {
         try {
             $link = $this->services->store($request->all());
-
             return response()->json($link, 200);
         } catch (\Throwable $th) {
             return response()->json(['message' => $th->getMessage()], $th->getCode() ?: 505);

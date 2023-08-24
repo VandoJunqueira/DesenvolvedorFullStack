@@ -85,6 +85,22 @@ const routes = [
         },
     },
     {
+        path: '/dashboard/perfil',
+        name: 'dashboard.perfil',
+        component: () => import(/* webpackChunkName: "dashboard.perfil" */ '../views/perfil/PerfilPage.vue'),
+        meta: {
+            requeresAuth: true,
+        },
+    },
+    {
+        path: '/dashboard/perfil/edit',
+        name: 'dashboard.perfil.edit',
+        component: () => import(/* webpackChunkName: "dashboard.perfil" */ '../views/perfil/PerfilEditPage.vue'),
+        meta: {
+            requeresAuth: true,
+        },
+    },
+    {
         path: '/:pathMatch(.*)',
         component: RedirectPage,
     },

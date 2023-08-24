@@ -18,6 +18,9 @@ const actions = {
             commit('loginErr', err);
         }
     },
+    async user({ commit }, data) {
+        return commit('setUser', data);
+    },
     async logOut({ commit }) {
         try {
             commit('logoutBegin');

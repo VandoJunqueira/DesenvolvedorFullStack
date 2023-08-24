@@ -17,6 +17,11 @@ export default {
         setItem('token', data.token);
     },
 
+    setUser(state, data) {
+        state.user = data;
+        setItem('user', data);
+    },
+
     loginErr(state, err) {
         state.loading = false;
         state.error = err;

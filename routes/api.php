@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\MetricController;
+use App\Http\Controllers\UploadController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +33,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Metricas
     Route::get('/metrics', [MetricController::class, 'metrics']);
+
+    // Usuario
+    Route::get('/perfil', [UserController::class, 'show']);
+    Route::put('/perfil', [UserController::class, 'update']);
+
+    // Upload
+    Route::post('/upload', [UploadController::class, 'upload']);
 });
 
 // Redireciona

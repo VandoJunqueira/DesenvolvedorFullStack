@@ -26,14 +26,14 @@
                                 <li>
                                     <router-link type="button" class="dropdown-item"
                                         :to="{ name: 'dashboard.edit', params: { slug: link.slug } }">
-                                        <vue-feather type="edit" size="16" class="text-black-50"></vue-feather> Copiar
+                                        <vue-feather type="edit" size="16" class="text-black-50"></vue-feather> Editar
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link type="button" class="dropdown-item text-danger"
-                                        :to="{ name: 'dashboard.edit', params: { slug: link.slug } }">
+                                    <a href="#" @click.prevent="destroy(link.id)" type="button"
+                                        class="dropdown-item text-danger">
                                         <vue-feather type="trash" size="16" class="text-danger"></vue-feather> Excluir
-                                    </router-link>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -90,7 +90,7 @@
                         </button>
                     </div>
                     <div>
-                        <div class="btn-group" role="group" aria-label="Botões de Ações">
+                        <div v-if="!this.$route.query.deleted" class="btn-group" role="group" aria-label="Botões de Ações">
                             <router-link type="button" class="btn"
                                 :to="{ name: 'dashboard.copy', params: { slug: link.slug } }">
                                 <vue-feather type="copy" size="18" class="text-black-50"></vue-feather>
@@ -100,6 +100,17 @@
                                 :to="{ name: 'dashboard.edit', params: { slug: link.slug } }">
                                 <vue-feather type="edit" size="18" class="text-black-50"></vue-feather>
                             </router-link>
+
+                            <button type="button" class="btn" @click="destroy(link.id)">
+                                <vue-feather type="trash" size="18" class="text-black-50"></vue-feather>
+                            </button>
+
+                        </div>
+
+                        <div v-else class="btn-group" role="group" aria-label="Botões de Ações">
+                            <button type="button" class="btn" @click="destroy(link.id)">
+                                <vue-feather type="refresh-ccw" size="18" class="text-black-50"></vue-feather>
+                            </button>
 
                             <button type="button" class="btn" @click="destroy(link.id)">
                                 <vue-feather type="trash" size="18" class="text-black-50"></vue-feather>

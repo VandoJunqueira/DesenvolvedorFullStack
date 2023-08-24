@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Link Shortener</title>
+    <link rel="shortcut icon" type="image/png" sizes="64x64" href="./favicon.png">
     @vite('resources/css/app.css')
 </head>
 

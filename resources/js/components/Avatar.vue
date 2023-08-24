@@ -1,5 +1,5 @@
 <template>
-    <div :class="['avatar', size]">
+    <div :class="['avatar', size]" class="bg-white">
         <img :src="img_src" alt="" :onerror="imgError">
     </div>
 </template>

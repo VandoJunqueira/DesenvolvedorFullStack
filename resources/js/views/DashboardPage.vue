@@ -44,9 +44,13 @@
         <div v-else>
             <CardListLInks v-for="link in links.data" :key="link.id" :link="link" />
 
-            <nav aria-label="Page navigation example">
+            <div v-if="links.total == 0" class="alert alert-info text-center">
+                Nenhum link encontrado!
+            </div>
+
+            <nav v-if="links.total > 0 && links.last_page > 1" aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
-                    <li v-for="page in links.links" :key="page.label" class="page-item">
+                    <li v-for=" page  in  links.links " :key="page.label" class="page-item">
                         <a v-if="!isNaN(page.label)" class="page-link rounded rounded-1 m-1" href="#"
                             @click="pushPage(page.label)">
                             {{ page.label }}
@@ -152,7 +156,9 @@ export default {
             });
         },
         pushPage(page) {
-            this.$router.push('/dashboard?page=' + page)
+            this.params.set('page', page);
+            this.push();
+            // this.$router.push('/dashboard?page=' + page)
         },
         push() {
             this.query_string = this.params.toString();
@@ -197,6 +203,11 @@ export default {
                     this.params.set('search', search);
                 }
 
+                const deleted = this.params.get('deleted') || null;
+                if (deleted != null) {
+                    this.params.set('deleted', deleted);
+                }
+
                 this.query_string = this.params.toString();
                 return '?' + this.query_string;
             }
@@ -211,6 +222,7 @@ export default {
     },
     watch: {
         '$route.query'() {
+            this.params = new URLSearchParams(this.$route.query);
             this.getLinks()
         },
         '$store.state.actions.delete'(action) {

@@ -11,7 +11,7 @@ const client = axios.create({
 });
 
 client.interceptors.request.use(config => {
-    const token = localStorage.getItem('token'); // Você pode armazenar o token no local storage
+    const token = localStorage.getItem('token');
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }
@@ -24,21 +24,24 @@ client.interceptors.response.use(
         return response;
     },
     error => {
-        if (error.response.status === 401) {
 
-            store.dispatch("logOut");
+        console.log(error.response);
+        if (typeof error.response != 'undefined') {
+            if (error.response.status === 401) {
 
-            router.push('/login');
-            return;
-        }
-        if (error.response.status === 403) {
-            return;
-        }
-        if (error.response.status === 404) {
-            router.push('/404');
-            return;
-        }
+                store.dispatch("logOut");
 
+                router.push('/login');
+                return;
+            }
+            if (error.response.status === 403) {
+                return;
+            }
+            if (error.response.status === 404) {
+                router.push('/404');
+                return;
+            }
+        }
         return Promise.reject(error);
     }
 );
@@ -58,6 +61,16 @@ class DataService {
             url: path,
             data,
             headers: { ...optionalHeader },
+        });
+    }
+
+    static upload(path = '', data = {}, optionalHeader = {}, onUploadProgress = {}) {
+        return client({
+            method: 'POST',
+            url: path,
+            data,
+            headers: { ...optionalHeader },
+            onUploadProgress: onUploadProgress
         });
     }
 

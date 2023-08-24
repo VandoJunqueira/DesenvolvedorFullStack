@@ -70,7 +70,7 @@ class LinkRepository extends Repository
 
     public function getCountClicks()
     {
-        return $this->model->select(DB::raw('SUM(hit_counter) as total_clicks'))->first();
+        return $this->model->select(DB::raw('SUM(hit_counter) as total_clicks'))->where('user_id', auth()->user()->id)->first();
     }
 
     public function countTotal()
